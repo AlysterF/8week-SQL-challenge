@@ -9,6 +9,8 @@
 
 [Case Questions](#questions)
 
+[Click here to open the solutions markdown](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/case_solutions.md)
+
 [8 Week SQL Challenge](#challenge)
 
 [Contact Me](#contact)
