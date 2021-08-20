@@ -1,3 +1,5 @@
+[Back to ReadMe](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/README.md)
+
 ### Schema creation
 
 
@@ -457,3 +459,5 @@ Create a table similar to the last one, but insert a columns to rank the order b
 ---
 
 [View the schema and questions (without solutions) on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/487)
+
+[Back to ReadMe](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/README.md)
