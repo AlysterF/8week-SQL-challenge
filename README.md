@@ -61,14 +61,10 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
   Danny collected a lot of data to start his new business, and he wants help to explore the data and answer some questions and get some insights that will help the business to be unique and assertive.
 
 
-  <!-- menu case 2 -->
-
   <details close>
   <summary> <b> Case questions </b> </summary>
   <br>
 
-
-    <!-- submenu 1 -->
 
     <details close>
     <summary> <b> A. Pizza Metrics </b> </summary>
@@ -87,8 +83,6 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
     </details>
 
 
-    <!-- submenu 2 -->
-
     <details close>
     <summary> <b> B. Runner and Customer Experience </b> </summary>
       <ol>
@@ -102,8 +96,6 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
       </ol>
     </details>
 
-
-    <!-- submenu 3 -->
 
     <details close>
     <summary> <b> C. Ingredient Optimisation </b> </summary>
@@ -126,7 +118,7 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
       </ol>
     </details>
 
-    <!-- submenu 4 -->
+    
     <details close>
     <summary> <b> D. Pricing and Ratings </b> </summary>
       <ol>
@@ -154,7 +146,6 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
     </details> 
 
 
-    <!-- submenu 5 -->
 
     <details close>
     <summary> <b> E. Bonus Questions </b> </summary>
