@@ -168,7 +168,7 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
 
   #### 🚧 Solutions under construction 🚧 
 
-  #### [Case Study #1 Official Website](https://8weeksqlchallenge.com/case-study-2/)
+  #### [Case Study #2 Official Website](https://8weeksqlchallenge.com/case-study-2/)
 
 </details>
 
