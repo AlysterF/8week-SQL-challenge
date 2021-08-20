@@ -52,6 +52,7 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
 </p>
 
 
+<!-- Menu details 2 -->
 <details close>
   <summary> <b> Case #2 details </b> </summary>
 
@@ -60,13 +61,13 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
   Danny had a business idea to create a Pizza Empire! But it's not only a pizza delivery, it's a special pizza delivery *Uberized*.
   Danny collected a lot of data to start his new business, and he wants help to explore the data and answer some questions and get some insights that will help the business to be unique and assertive.
 
+<!-- Menu case questions 2 -->
+<details close>
+<summary> <b> Case questions </b> </summary>
+<br>
 
-  <details close>
-  <summary> <b> Case questions </b> </summary>
-  <br>
-
-
-    <details close>
+<!-- submenu 1 -->  
+<details close>
     <summary> <b> A. Pizza Metrics </b> </summary>
       <ol>
         <li>How many pizzas were ordered?</li>
@@ -83,7 +84,8 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
     </details>
 
 
-    <details close>
+<!-- submenu 2 -->  
+<details close>
     <summary> <b> B. Runner and Customer Experience </b> </summary>
       <ol>
         <li>How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)</li>
@@ -97,7 +99,8 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
     </details>
 
 
-    <details close>
+<!-- submenu 3 -->  
+<details close>
     <summary> <b> C. Ingredient Optimisation </b> </summary>
       <ol>
       <li>What are the standard ingredients for each pizza?</li>
@@ -119,7 +122,8 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
     </details>
 
     
-    <details close>
+<!-- submenu 4 -->  
+<details close>
     <summary> <b> D. Pricing and Ratings </b> </summary>
       <ol>
         <li>If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?</li>
@@ -146,8 +150,8 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
     </details> 
 
 
-
-    <details close>
+<!-- submenu 5 -->  
+<details close>
     <summary> <b> E. Bonus Questions </b> </summary>
       <ol>
         <li>If Danny wants to expand his range of pizzas - how would this impact the existing data design? Write an INSERT statement to demonstrate what would happen if a new Supreme pizza with all the toppings was added to the Pizza Runner menu.</li>
@@ -155,7 +159,7 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
     </details> 
 
 
-  </details>
+</details>
 
   #### 🚧 Solutions under construction 🚧 
 
