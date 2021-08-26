@@ -35,9 +35,9 @@ WITH first_pricing AS(
 
 second_pricing AS(
   SELECT fp.*, pt.topping_name,
-    CASE pt.topping_name
-      WHEN 'Cheese' THEN 2
-    WHEN IS NOT NULL THEN 1
+    CASE 
+      WHEN pt.topping_name = 'Cheese' THEN 2
+      WHEN pt.topping_name IS NOT NULL THEN 1
       ELSE 0
     END AS extra_charge
   FROM first_pricing fp
