@@ -128,6 +128,8 @@ If Danny wants to expand his range of pizzas - how would this impact the existin
 
 ## Case Solutions
 
+[Data cleaning and corrections](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/00%20-%20Table%20Corrections.md)
+
 [A. Pizza Metrics](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/A%20-%20Pizza%20Metrics.md)
 
 [B. Runner and Customer Experience](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/B%20-%20Runner%20and%20Customer%20Experience.md)
