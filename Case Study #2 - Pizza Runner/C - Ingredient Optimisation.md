@@ -1,8 +1,11 @@
-## C - Ingredient Optimisation
+## C - Ingredient Optimisation 🧀🥓
 
 ---
-**Query #20**
+**Query #01**
 
+What are the standard ingredients for each pizza?
+
+````sql
     SELECT
       pn.pizza_name,
       pt.topping_name
@@ -14,7 +17,10 @@
       pizza_runner.pizza_toppings pt ON pt.topping_id = pi.topping_id
     ORDER BY
       pn.pizza_name,
-      pt.topping_name;
+      pt.topping_name;  
+````
+
+***Output***
 
 | pizza_name | topping_name |
 | ---------- | ------------ |
@@ -33,9 +39,13 @@
 | Vegetarian | Tomato Sauce |
 | Vegetarian | Tomatoes     |
 
----
-**Query #21**
 
+---
+**Query #02**
+
+What was the most commonly added extra?
+
+````sql
     SELECT
       pt.topping_name,
       COUNT(pe.extra_id) AS total_added
@@ -48,14 +58,21 @@
     ORDER BY
       total_added DESC
     LIMIT 1;
+````
+
+***Output***
 
 | topping_name | total_added |
 | ------------ | ----------- |
 | Bacon        | 4           |
 
----
-**Query #22**
 
+---
+**Query #03**
+
+What was the most common exclusion?
+
+````sql
     SELECT
       pt.topping_name,
       COUNT(pe.exclusion_id) AS total_excluded
@@ -68,14 +85,28 @@
     ORDER BY
       total_excluded DESC
     LIMIT 1;
+````
+
+***Output***
 
 | topping_name | total_excluded |
 | ------------ | -------------- |
 | Cheese       | 4              |
 
 ---
-**Query #23**
+**Query #04**
 
+Generate an order item for each record in the customers_orders table in the format of one of the following:
+
+    Meat Lovers
+    Meat Lovers - Exclude Beef
+    Meat Lovers - Extra Bacon
+    Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers
+
+This was one of the hardest queries I had to write. I'm not sure if the currenct query is in its higher efficiency, but I was just glad I was able to get the answer!
+I'm really open to comments, ok? Feel free to send me a message to comment your opinion about this query.
+
+````sql
     WITH exc_order_details AS(
       SELECT
         co.id,
@@ -159,6 +190,9 @@
             pizza_name
       END AS full_order
     FROM group_extra;
+````
+
+***Output***
 
 | id  | full_order                                                      |
 | --- | --------------------------------------------------------------- |
@@ -177,9 +211,17 @@
 | 13  | Meatlovers - Exclude BBQ Sauce, Mushrooms - Extra Bacon, Cheese |
 | 14  | Meatlovers                                                      |
 
----
-**Query #24**
 
+---
+**Query #05**
+
+Generate an alphabetically ordered comma separated ingredient list for each pizza order from the customer_orders table and add a 2x in front of any relevant ingredients
+
+    For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
+
+This one was easier than the last one, specially because I didn't have to show which ingredient was excluded, I just deleted them from the list of ingredients.
+
+````sql
     WITH pizza_details AS(
       SELECT
         co.id,
@@ -228,6 +270,9 @@
       pizza_id,
       pizza_name
     ORDER BY id;
+````
+
+***Output***
 
 | id  | order_id | order_detail                                                                        |
 | --- | -------- | ----------------------------------------------------------------------------------- |
@@ -246,9 +291,13 @@
 | 13  | 10       | Meatlovers: 2xBacon, Beef, 2xCheese, Chicken, Pepperoni, Salami                     |
 | 14  | 10       | Meatlovers: BBQ Sauce, Bacon, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami   |
 
----
-**Query #25**
 
+---
+**Query #06**
+
+What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?
+
+````sql
     WITH ingredient_count AS(
       SELECT
         co.id,
@@ -286,6 +335,7 @@
       ingredient
     ORDER BY
       total_used DESC;
+````
 
 | ingredient   | total_used |
 | ------------ | ---------- |
@@ -301,6 +351,9 @@
 | Onions       | 4          |
 | Peppers      | 4          |
 | Tomato Sauce | 4          |
+
+
+Of course cheese was one of the top 5. Cheese is life!
 
 ---
 
