@@ -273,4 +273,4 @@ What was the volume of orders for each day of the week?
 
 ---
 
-[View on DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65)
+[View the original schema on DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65)
