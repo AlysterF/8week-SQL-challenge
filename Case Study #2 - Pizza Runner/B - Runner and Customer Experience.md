@@ -37,7 +37,7 @@ When using WOY to extract the week of year, sometimes if the first day of the ye
 
 What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
-In this calculations I broke the date into two parts: the hours and minutes. I could use the day if it was applicaple, but I know the difference between the two timestamps are not longer than hours.
+In this calculation I broke the date into two parts: the hours and minutes. I could use the day if it was applicaple, but I know the difference between the two timestamps are not longer than hours.
 
 ````sql
     WITH pickup_analysis AS(
