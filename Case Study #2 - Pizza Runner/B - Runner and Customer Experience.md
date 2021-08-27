@@ -1,7 +1,13 @@
-## B. Runner and Customer Experience
+## B. Runner and Customer Experience 🛵👥
 
-**Query #20**
+**Query #01**
 
+How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+
+In this query I had to convert the date into week using to_char function, once dates in PostgreSQL are according to ISO8601.
+When using WOY to extract the week of year, sometimes if the first day of the year is part of the last week of the last year, the week will be consider as 52 or 53, depending of the year, and using to_char function I avoid this kind of overlaping.
+
+````sql
     WITH registration_weeks AS (
       SELECT
         runner_id,
@@ -15,6 +21,9 @@
       registration_weeks
     GROUP BY week
     ORDER BY week;
+````
+
+***Output***
 
 | week | new_runners |
 | ---- | ----------- |
@@ -22,9 +31,15 @@
 | 02   | 1           |
 | 03   | 1           |
 
----
-**Query #21**
 
+---
+**Query #02**
+
+What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+
+In this calculations I broke the date into two parts: the hours and minutes. I could use the day if it was applicaple, but I know the difference between the two timestamps are not longer than hours.
+
+````sql
     WITH pickup_analysis AS(
       SELECT
         ro.order_id,
@@ -44,6 +59,9 @@
       pickup_analysis
     GROUP BY runner_id
     ORDER BY runner_id;
+````
+
+***Output***
 
 | runner_id | avg_minutes_to_pickup |
 | --------- | --------------------- |
@@ -52,8 +70,11 @@
 | 3         | 10.00                 |
 
 ---
-**Query #22**
+**Query #03**
 
+Is there any relationship between the number of pizzas and how long the order takes to prepare?
+
+````sql
     WITH prep_time AS(
       SELECT
         ro.order_id,
@@ -76,6 +97,9 @@
       prep_time
     GROUP BY qty_pizzas
     ORDER BY qty_pizzas;
+````
+
+***Output***
 
 | qty_pizzas | avg_prep_time |
 | ---------- | ------------- |
@@ -83,9 +107,17 @@
 | 2          | 18            |
 | 3          | 29            |
 
----
-**Query #23**
 
+Notice that the average preparation time is higher when we have more pizzas in the order. And it really make sense, right?
+It's curious that the average difference between 1 and 2 pizzas are only 6 minutes, and when the order has 3, the prep time increase considerably. Maybe the pizza company can only bake two pizzas at the same time. It would be something to think about :)
+
+
+---
+**Query #04**
+
+What was the average distance travelled for each customer?
+
+````sql
     SELECT
       co.customer_id,
       ROUND(CAST(AVG(ro.distance) AS DECIMAL),2) AS avg_distance_km
@@ -95,6 +127,9 @@
       pizza_runner.runner_orders ro ON ro.order_id = co.order_id
     GROUP BY co.customer_id
     ORDER BY co.customer_id;
+````
+
+***Output***
 
 | customer_id | avg_distance_km |
 | ----------- | --------------- |
@@ -105,8 +140,11 @@
 | 105         | 25.00           |
 
 ---
-**Query #24**
+**Query #05**
 
+What was the difference between the longest and shortest delivery times for all orders?
+
+````sql
     WITH delivery_time AS(
       SELECT
       (DATE_PART('hour', ro.pickup_time - co.order_time) * 60
@@ -121,14 +159,21 @@
       MAX(delivery_time) - MIN(delivery_time) AS max_min_diff_delivery
     FROM
       delivery_time;
+````
+
+***Output***
 
 | max_min_diff_delivery |
 | --------------------- |
 | 44                    |
 
----
-**Query #25**
 
+---
+**Query #06**
+
+What was the average speed for each runner for each delivery and do you notice any trend for these values?
+
+````sql
     SELECT
       runner_id,
       order_id,
@@ -142,6 +187,9 @@
     ORDER BY
       runner_id,
       order_id;
+````
+
+***Output***
 
 | runner_id | order_id | distance_km | duration_minutes | avg_speed_kmh |
 | --------- | -------- | ----------- | ---------------- | ------------- |
@@ -154,9 +202,17 @@
 | 2         | 8        | 23.4        | 15               | 93.60         |
 | 3         | 5        | 10          | 15               | 40.00         |
 
----
-**Query #26**
 
+It looks like the runners increase their average speed in each order.
+It's difficult to know why, once we don't know if they're using another route, or the customer ordered for a different destination and etc. Too many possible variables! It would be great to explore more about it though!
+
+
+---
+**Query #07**
+
+What is the successful delivery percentage for each runner?
+
+````sql
     WITH deliveries AS (
       SELECT
         runner_id,
@@ -177,6 +233,9 @@
       ROUND((successful_deliveries::DECIMAL/total_deliveries::DECIMAL),2) AS perc_successful
     FROM
       deliveries;
+````
+
+***Output***
 
 | runner_id | total_deliveries | successful_deliveries | perc_successful |
 | --------- | ---------------- | --------------------- | --------------- |
@@ -184,6 +243,9 @@
 | 2         | 4                | 3                     | 0.75            |
 | 1         | 4                | 4                     | 1.00            |
 
+The percentage here is not formatted as percentual value, it's a decimal value :)
+I choose this format thinking about the future use of data, per example, in dataviz tools. It's usually easier to work with decimals in those tools.
+
 ---
 
-[View on DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65)
+[View Original Schema on DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65)
