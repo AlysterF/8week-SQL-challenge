@@ -161,7 +161,7 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
 
 </details>
 
-  #### 🚧 Solutions under construction 🚧 
+  #### [My Solution and SQL Files](https://github.com/AlysterF/8week-SQL-challenge/tree/main/Case%20Study%20%232%20-%20Pizza%20Runner)
 
   #### [Case Study #2 Official Website](https://8weeksqlchallenge.com/case-study-2/)
 
