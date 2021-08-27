@@ -35,7 +35,8 @@ Danny had a business idea to create a Pizza Empire! But it's not only a pizza de
 
 ## Case Questions
 
-In this case study, the questions were splitted by topics:
+In this case study the first challenge is to clean and correct anything wrong with the original tables.
+Once the correction is done, the questions were splitted by topics:
 
 <details close>
   <summary> <b> A. Pizza Metrics </b> </summary>
