@@ -1,5 +1,6 @@
 **Schema (PostgreSQL v13)**
 
+````sql
     CREATE SCHEMA pizza_runner;
     SET search_path = pizza_runner;
     
@@ -115,7 +116,7 @@
       (10, 'Salami'),
       (11, 'Tomatoes'),
       (12, 'Tomato Sauce');
-
+````
 ---
 
 
