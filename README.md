@@ -167,4 +167,90 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
 
 </details>
 
+<br></br>
+
+<h1 align="center" id="heading">🥑 Case Study #3 - Foodie-Fi 🥑</h1>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11970888/131377849-2ffd69df-5b00-457c-a8ec-de7eb6816823.png" width="500" position="center"/>
+</p>
+
+<!-- Menu details 2 -->
+<details close>
+  <summary> <b> Case #3 details </b> </summary>
+
+  #### Business Case
+
+  Danny and some friends created Foodie-Fi, a startup of streaming focused only on cooking shows! The startup sells monthly and annual subscriptions, and was created as a data driven company. This case study focus on using subscription style digital data to answer important business questions.
+
+<!-- Menu case questions 2 -->
+<details close>
+<summary> <b> Case questions </b> </summary>
+<br>
+
+<!-- submenu 1 -->  
+  <details close>
+    <summary> <b> A. Customer Journey </b> </summary>
+      <ol>
+        <li> Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customer’s onboarding journey. Try to keep it as short as possible - you may also want to run some sort of join to make your explanations a bit easier! </li>
+      </ol>
+  </details>
+
+
+<!-- submenu 2 -->  
+  <details close>
+    <summary> <b> B. Data Analysis Questions </b> </summary>
+      <ol>
+        <li>How many customers has Foodie-Fi ever had?
+        <li>What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value</li>
+        <li>What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name.</li>
+        <li>What is the customer count and percentage of customers who have churned rounded to 1 decimal place?</li>
+        <li>How many customers have churned straight after their initial free trial - what percentage is this rounded to the nearest whole number?</li>
+        <li>What is the number and percentage of customer plans after their initial free trial?</li>
+        <li>What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?</li>
+        <li>How many customers have upgraded to an annual plan in 2020?</li>
+        <li>How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?</li>
+        <li>Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)</li>
+        <li>How many customers downgraded from a pro monthly to a basic monthly plan in 2020?</li>
+      </ol>
+  </details>
+
+
+<!-- submenu 3 -->  
+  <details close>
+    <summary> <b> C. Challenge Payment Question </b> </summary>
+      <ol>
+        <li>The Foodie-Fi team wants you to create a new payments table for the year 2020 that includes amounts paid by each customer in the subscriptions table with the following requirements:</li>
+        <ul>
+          <li>monthly payments always occur on the same day of month as the original start_date of any monthly paid plan;</li>
+          <li>upgrades from basic to monthly or pro plans are reduced by the current paid amount in that month and start immediately;</li>
+          <li>upgrades from pro monthly to pro annual are paid at the end of the current billing period and also starts at the end of the month period;</li>
+          <li>once a customer churns they will no longer make payments.</li>
+        </ul>
+      </ol>
+  </details>
+
+    
+<!-- submenu 4 -->  
+  <details close>
+    <summary> <b> D. Outside The Box Questions </b> </summary>
+      <ol>
+        <li>How would you calculate the rate of growth for Foodie-Fi?</li>
+        <li>What key metrics would you recommend Foodie-Fi management to track over time to assess performance of their overall business?</li>
+        <li>What are some key customer journeys or experiences that you would analyse further to improve customer retention?</li>
+        <li>If the Foodie-Fi team were to create an exit survey shown to customers who wish to cancel their subscription, what questions would you include in the survey?</li>
+        <li>What business levers could the Foodie-Fi team use to reduce the customer churn rate? How would you validate the effectiveness of your ideas?</li>
+      </ol>
+  </details> 
+ 
+
+
+</details>
+
+  #### My Solution and SQL Files (Soon 🚧)
+
+  #### [Case Study #3 Official Website](https://8weeksqlchallenge.com/case-study-3/)
+
+</details>
+
 #### 🚧 Other cases will be added in the future 🚧
