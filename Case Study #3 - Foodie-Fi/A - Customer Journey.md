@@ -1,4 +1,4 @@
-## A. Customer Journey
+## A. Customer Journey 👥
 
 To answer this question, I was based off the 8 sample customers provided in the sample from the subscriptions table, the challenge was to write a brief description about each customer’s onboarding journey.
 
