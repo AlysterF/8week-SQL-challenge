@@ -247,7 +247,7 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
 
 </details>
 
-  #### My Solution and SQL Files (https://github.com/AlysterF/8week-SQL-challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi)
+  #### [My Solution and SQL Files] (https://github.com/AlysterF/8week-SQL-challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi)
 
   #### [Case Study #3 Official Website](https://8weeksqlchallenge.com/case-study-3/)
 
