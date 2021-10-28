@@ -6,6 +6,8 @@ If you want to know more about the challenge and Danny Ma (and I really recommen
 
 <br></br>
 
+# All cases are going to be reviewed, due to my advances in SQL studies.
+
 <h1 align="center" id="heading"> 🍜 Case Study #1 - Danny's Diner 🍜 </h1>
 
 <p align="center">
