@@ -82,11 +82,17 @@ What is the total amount each customer spent at the restaurant?
 it's important to remember that if you are showing any other columns different
 from the aggregation you have to group the agg column using the others as reference.*/
 
-    SELECT s.customer_id, SUM(m.price) AS total_spent
-    FROM dannys_diner.sales s
-    JOIN dannys_diner.menu m ON m.product_id = s.product_id
-    GROUP BY s.customer_id
-    ORDER BY total_spent DESC;
+    SELECT
+      s.customer_id,
+      SUM(m.price) AS total_spent
+    FROM
+      dannys_diner.sales s
+    JOIN
+      dannys_diner.menu m ON m.product_id = s.product_id
+    GROUP BY
+      s.customer_id
+    ORDER BY
+      total_spent DESC;
 ````
 
 ***Output***
@@ -106,10 +112,15 @@ How many days has each customer visited the restaurant?
 /*here I used count distinct because some customer order multiple times in the same day,
 so we have duplicated dates that should be counted as one.*/
 
-    SELECT customer_id, COUNT(DISTINCT order_date) AS visits
-    FROM dannys_diner.sales
-    GROUP BY customer_id
-    ORDER BY visits DESC;
+    SELECT
+      customer_id,
+      COUNT(DISTINCT order_date) AS visits
+    FROM
+      dannys_diner.sales
+    GROUP BY
+      customer_id
+    ORDER BY
+      visits DESC;
 ````
 
 ***Output***
@@ -135,17 +146,26 @@ I have to assume that everything ordered in the same day has to be ranked the sa
 The dense_rank function does exactly that.*/
 
     WITH ranked_sales AS(
-      SELECT s.customer_id, s.order_date, mn.product_name, DENSE_RANK() OVER(
-        PARTITION BY s.customer_id
-        ORDER BY s.order_date
-      ) AS rank
-      FROM dannys_diner.sales s
-      JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
+      SELECT
+        s.customer_id,
+        s.order_date,
+        mn.product_name,
+        DENSE_RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date) AS rank
+      FROM
+        dannys_diner.sales s
+      JOIN
+        dannys_diner.menu mn ON mn.product_id = s.product_id
     )
-    SELECT customer_id, product_name
-    FROM ranked_sales
-    WHERE rank = 1
-    GROUP BY customer_id, product_name;
+    SELECT
+      customer_id,
+      product_name
+    FROM
+      ranked_sales
+    WHERE
+      rank = 1
+    GROUP BY
+      customer_id,
+      product_name;
 ````
 
 ***Output***
@@ -166,11 +186,17 @@ Customer B ordered curry and customer C ordered ramem.
 What is the most purchased item on the menu and how many times was it purchased by all customers?
 
 ````sql
-    SELECT mn.product_name, COUNT(s.product_id) AS times_purchased
-    FROM dannys_diner.sales s
-    JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
-    GROUP BY mn.product_name
-    ORDER BY times_purchased DESC
+    SELECT
+      mn.product_name,
+      COUNT(s.product_id) AS times_purchased
+    FROM
+      dannys_diner.sales s
+    JOIN
+      dannys_diner.menu mn ON mn.product_id = s.product_id
+    GROUP BY
+      mn.product_name
+    ORDER BY
+      times_purchased DESC
     LIMIT 1;
 ````
 
@@ -189,20 +215,29 @@ Which item was the most popular for each customer?
 
 ````sql
     WITH product_rank_cust AS(
-      SELECT s.customer_id, mn.product_name, COUNT(s.product_id) AS purchases,
-      DENSE_RANK() OVER(
-        PARTITION BY s.customer_id
-        ORDER BY COUNT(s.product_id) DESC
-      ) AS rank
-      FROM dannys_diner.sales s
-      JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
-      GROUP BY s.customer_id, mn.product_name
+      SELECT
+        s.customer_id,
+        mn.product_name,
+        COUNT(s.product_id) AS purchases,
+        DENSE_RANK() OVER(PARTITION BY s.customer_id ORDER BY COUNT(s.product_id) DESC) AS rank
+      FROM
+        dannys_diner.sales s
+      JOIN
+        dannys_diner.menu mn ON mn.product_id = s.product_id
+      GROUP BY
+        s.customer_id,
+        mn.product_name
     )
-    
-    SELECT customer_id, product_name, purchases
-    FROM product_rank_cust
-    WHERE rank = 1
-    ORDER BY customer_id;
+    SELECT
+      customer_id,
+      product_name,
+      purchases
+    FROM
+      product_rank_cust
+    WHERE
+      rank = 1
+    ORDER BY
+      customer_id;
 ````
 
 ***Output***
@@ -228,19 +263,28 @@ if I'm joining everything? Well, if you use JOIN clause you are inner joining
 everything, and inner join only show the results where the indicated key comparision matches*/
 
     WITH ranked_product_members AS(
-      SELECT mb.customer_id, mn.product_name, s.order_date,
-      DENSE_RANK() OVER(
-        PARTITION BY mb.customer_id
-        ORDER BY s.order_date
-      ) AS rank
-      FROM dannys_diner.members mb
-      JOIN dannys_diner.sales s ON s.customer_id = mb.customer_id
-      JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
-      WHERE s.order_date >= mb.join_date
+      SELECT
+        mb.customer_id,
+        mn.product_name,
+        s.order_date,
+        DENSE_RANK() OVER(PARTITION BY mb.customer_id ORDER BY s.order_date) AS rank
+      FROM
+        dannys_diner.members mb
+      JOIN
+        dannys_diner.sales s ON s.customer_id = mb.customer_id
+      JOIN
+        dannys_diner.menu mn ON mn.product_id = s.product_id
+      WHERE
+        s.order_date >= mb.join_date
     )
-    SELECT customer_id, product_name, order_date
-    FROM ranked_product_members
-    WHERE rank = 1;
+    SELECT
+      customer_id,
+      product_name,
+      order_date
+    FROM
+      ranked_product_members
+    WHERE
+      rank = 1;
 ````
 
 ***Output***
@@ -257,19 +301,28 @@ Which item was purchased just before the customer became a member?
 
 ````sql
     WITH ranked_product_notmembers AS(
-      SELECT mb.customer_id, mn.product_name, s.order_date,
-      DENSE_RANK() OVER(
-        PARTITION BY mb.customer_id
-        ORDER BY s.order_date DESC
-      ) AS rank
-      FROM dannys_diner.members mb
-      JOIN dannys_diner.sales s ON s.customer_id = mb.customer_id
-      JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
-      WHERE s.order_date < mb.join_date
+      SELECT
+        mb.customer_id,
+        mn.product_name,
+        s.order_date,
+        DENSE_RANK() OVER(PARTITION BY mb.customer_id ORDER BY s.order_date DESC) AS rank
+      FROM
+        dannys_diner.members mb
+      JOIN
+        dannys_diner.sales s ON s.customer_id = mb.customer_id
+      JOIN
+        dannys_diner.menu mn ON mn.product_id = s.product_id
+      WHERE
+        s.order_date < mb.join_date
     )
-    SELECT customer_id, product_name, order_date
-    FROM ranked_product_notmembers
-    WHERE rank = 1;
+    SELECT
+      customer_id,
+      product_name,
+      order_date
+    FROM
+      ranked_product_notmembers
+    WHERE
+      rank = 1;
 ````
 
 ***Output***
@@ -287,16 +340,29 @@ What is the total items and amount spent for each member before they became a me
 
 ````sql
     WITH purchases_before_member AS(
-      SELECT mb.customer_id, mn.product_name, mn.price
-      FROM dannys_diner.members mb
-      JOIN dannys_diner.sales s ON s.customer_id = mb.customer_id
-      JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
-      WHERE s.order_date < mb.join_date
+      SELECT
+        mb.customer_id,
+        mn.product_name,
+        mn.price
+      FROM
+        dannys_diner.members mb
+      JOIN
+        dannys_diner.sales s ON s.customer_id = mb.customer_id
+      JOIN
+        dannys_diner.menu mn ON mn.product_id = s.product_id
+      WHERE
+        s.order_date < mb.join_date
     )
-    SELECT customer_id, COUNT(product_name) AS total_items, SUM(price) AS total_price
-    FROM purchases_before_member
-    GROUP BY customer_id
-    ORDER BY customer_id;
+    SELECT
+      customer_id,
+      COUNT(product_name) AS total_items,
+      SUM(price) AS total_price
+    FROM
+      purchases_before_member
+    GROUP BY
+      customer_id
+    ORDER BY
+      customer_id;
 ````
 
 ***Output***
@@ -313,19 +379,29 @@ If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how
 
 ````sql
     WITH points_per_purchase AS(
-      SELECT s.customer_id, mn.product_name, mn.price,
-      CASE
-      	WHEN mn.product_name = 'sushi' THEN 2
-      	ELSE 1
-      END AS multiplier,
-      (mn.price * 10) AS points
-      FROM dannys_diner.sales s
-      JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
+      SELECT
+        s.customer_id,
+        mn.product_name,
+        mn.price,
+        CASE
+         WHEN mn.product_name = 'sushi' THEN 2
+         ELSE 1
+        END AS multiplier,
+        (mn.price * 10) AS points
+      FROM
+        dannys_diner.sales s
+      JOIN
+        dannys_diner.menu mn ON mn.product_id = s.product_id
     )
-    SELECT customer_id, SUM((points * multiplier)) AS total_points
-    FROM points_per_purchase
-    GROUP BY customer_id
-    ORDER BY customer_id;
+    SELECT
+      customer_id,
+      SUM((points * multiplier)) AS total_points
+    FROM
+      points_per_purchase
+    GROUP BY
+      customer_id
+    ORDER BY
+      customer_id;
 ````
 
 ***Output***
@@ -343,21 +419,33 @@ In the first week after a customer joins the program (including their join date)
 
 ````sql
     WITH points_purch_member AS(
-      SELECT s.customer_id, mn.product_name, mn.price, s.order_date,
-      CASE
-      	WHEN mn.product_name = 'sushi' THEN 2
-      	WHEN s.customer_id IN (SELECT customer_id FROM dannys_diner.members) AND (s.order_date >= mb.join_date AND s.order_date < (mb.join_date+7)) THEN 2
-      	ELSE 1
-      END AS multiplier,
-      (mn.price * 10) AS points
-      FROM dannys_diner.sales s
-      JOIN dannys_diner.menu mn ON mn.product_id = s.product_id
-      JOIN dannys_diner.members mb ON mb.customer_id = s.customer_id
+      SELECT
+        s.customer_id,
+        mn.product_name,
+        mn.price,
+        s.order_date,
+        CASE
+         WHEN mn.product_name = 'sushi' THEN 2
+         WHEN s.customer_id IN (SELECT customer_id FROM dannys_diner.members) AND (s.order_date >= mb.join_date AND s.order_date < (mb.join_date+7)) THEN 2
+         ELSE 1
+        END AS multiplier,
+        (mn.price * 10) AS points
+      FROM
+        dannys_diner.sales s
+      JOIN
+        dannys_diner.menu mn ON mn.product_id = s.product_id
+      JOIN
+        dannys_diner.members mb ON mb.customer_id = s.customer_id
     )
-    SELECT customer_id, SUM((points * multiplier)) AS total_points
-    FROM points_purch_member
-    GROUP BY customer_id
-    ORDER BY customer_id;
+    SELECT
+      customer_id,
+      SUM((points * multiplier)) AS total_points
+    FROM
+      points_purch_member
+    GROUP BY
+      customer_id
+    ORDER BY
+      customer_id;
 ````
 
 ***Output***
